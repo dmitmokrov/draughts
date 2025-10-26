@@ -98,26 +98,26 @@ const handleLogin = async () => {
 <style scoped>
 .login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .login-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .login-card h2 {
-  text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
+  text-align: center;
 }
 
 .login-form {
@@ -133,8 +133,8 @@ const handleLogin = async () => {
 }
 
 .field label {
-  font-weight: 500;
   color: #555;
+  font-weight: 500;
 }
 
 .error-text {
@@ -148,19 +148,19 @@ const handleLogin = async () => {
 }
 
 .error-message {
-  background: #fee;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
   padding: 0.75rem;
+  border: 1px solid #f5c6cb;
   border-radius: 4px;
+  background: #fee;
+  color: #721c24;
   text-align: center;
 }
 
 .login-info {
-  margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid #eee;
-  text-align: center;
+  margin-top: 1.5rem;
   color: #666;
+  text-align: center;
 }
 </style>

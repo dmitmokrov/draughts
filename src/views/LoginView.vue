@@ -11,6 +11,7 @@
             v-model="email"
             placeholder="Введите ваш email"
             type="email"
+            fluid
             :class="{ 'p-invalid': formErrors.email }"
           />
           <small v-if="formErrors.email" class="error-text">{{ formErrors.email }}</small>
@@ -24,6 +25,7 @@
             placeholder="Введите пароль"
             :feedback="false"
             toggleMask
+            fluid
             :class="{ 'p-invalid': formErrors.password }"
           />
           <small v-if="formErrors.password" class="error-text">{{ formErrors.password }}</small>

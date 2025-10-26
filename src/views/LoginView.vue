@@ -88,12 +88,8 @@ const validateForm = () => {
 const handleLogin = async () => {
   if (!validateForm()) return;
 
-  try {
-    await login(email.value, password.value);
-    router.push('/dashboard');
-  } catch (error) {
-    // Ошибка уже обработана в store
-  }
+  await login(email.value, password.value);
+  router.push('/dashboard');
 };
 </script>
 

@@ -15,7 +15,7 @@ interface UserData {
   email: string;
   name: string;
   role: 'trainer' | 'student';
-  createdAt: Date;
+  createdAt: number; // Using timestamp instead of Date for better serialization
   trainerId?: string;
 }
 
@@ -49,8 +49,12 @@ export const useAuthStore = defineStore('auth', () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       await loadUserData(userCredential.user.uid);
       lastAuthCheck.value = Date.now();
-    } catch (err: any) {
-      error.value = getErrorMessage(err.code);
+    } catch (err: unknown) {
+      if (err instanceof Error && 'code' in err) {
+        error.value = getErrorMessage(err.code as string);
+      } else {
+        error.value = 'Произошла ошибка при аутентификации';
+      }
       throw err;
     } finally {
       isLoading.value = false;
@@ -73,14 +77,18 @@ export const useAuthStore = defineStore('auth', () => {
         email,
         name,
         role: 'trainer',
-        createdAt: new Date(),
+        createdAt: Date.now(),
       };
 
       await saveUserData(userCredential.user.uid, newUserData);
       await loadUserData(userCredential.user.uid);
       lastAuthCheck.value = Date.now();
-    } catch (err: any) {
-      error.value = getErrorMessage(err.code) || err.message;
+    } catch (err: unknown) {
+      if (err instanceof Error && 'code' in err) {
+        error.value = getErrorMessage(err.code as string) || (err as Error).message;
+      } else {
+        error.value = 'Произошла ошибка при регистрации';
+      }
       throw err;
     } finally {
       isLoading.value = false;
@@ -95,8 +103,12 @@ export const useAuthStore = defineStore('auth', () => {
       userData.value = null;
       error.value = null;
       lastAuthCheck.value = null;
-    } catch (err: any) {
-      error.value = err.message;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        error.value = (err as Error).message;
+      } else {
+        error.value = 'Произошла ошибка при выходе из системы';
+      }
       throw err;
     } finally {
       isLoading.value = false;
@@ -108,12 +120,19 @@ export const useAuthStore = defineStore('auth', () => {
       const userDoc = await getDoc(doc(db, 'users', userId));
 
       if (userDoc.exists()) {
-        userData.value = userDoc.data() as UserData;
+        const data = userDoc.data();
+        userData.value = {
+          email: data.email,
+          name: data.name,
+          role: data.role,
+          createdAt: typeof data.createdAt === 'number' ? data.createdAt : Date.now(),
+          trainerId: data.trainerId,
+        };
       } else {
         await logout();
         throw new Error('Пользователь не найден в системе');
       }
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error loading user data:', err);
       throw err;
     }
@@ -129,7 +148,7 @@ export const useAuthStore = defineStore('auth', () => {
       const q = query(usersRef, where('email', '==', email), where('role', '==', 'trainer'));
       const snapshot = await getDocs(q);
       return !snapshot.empty;
-    } catch (err) {
+    } catch (err: unknown) {
       console.error('Error checking trainer role:', err);
       return false;
     }
@@ -143,7 +162,7 @@ export const useAuthStore = defineStore('auth', () => {
           try {
             await loadUserData(authUser.uid);
             lastAuthCheck.value = Date.now();
-          } catch (err) {
+          } catch (err: unknown) {
             console.error('Auth state change error:', err);
             lastAuthCheck.value = null;
           }

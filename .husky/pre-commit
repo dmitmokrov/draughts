@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+# Run type checking on staged files
+echo "Running type check..."
+bun run type-check
+
+# Run linting on staged files
+echo "Running lint-staged..."
+bun run lint-staged

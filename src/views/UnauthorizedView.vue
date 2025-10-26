@@ -4,7 +4,7 @@
       <h1>⛔ Доступ запрещен</h1>
       <p>У вас недостаточно прав для просмотра этой страницы.</p>
 
-      <div class="user-info" v-if="authStore.userData">
+      <div v-if="authStore.userData" class="user-info">
         <p>
           Ваша роль: <strong>{{ roleText }}</strong>
         </p>
@@ -14,14 +14,14 @@
         </p>
       </div>
 
-      <div class="user-info" v-else>
+      <div v-else class="user-info">
         <p>Информация о пользователе не доступна</p>
       </div>
 
       <div class="actions">
-        <button @click="goToDashboard" class="btn-primary">На главную</button>
-        <button @click="logout" class="btn-secondary">Выйти</button>
-        <button @click="reloadPage" class="btn-tertiary">Обновить страницу</button>
+        <button class="btn-primary" @click="goToDashboard">На главную</button>
+        <button class="btn-secondary" @click="logout">Выйти</button>
+        <button class="btn-tertiary" @click="reloadPage">Обновить страницу</button>
       </div>
     </div>
   </div>
@@ -59,72 +59,72 @@ const reloadPage = () => {
 <style scoped>
 .unauthorized-view {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
 }
 
 .error-container {
-  background: white;
+  max-width: 500px;
   padding: 3rem;
   border-radius: 12px;
+  background: white;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 500px;
 }
 
 .error-container h1 {
-  color: #e74c3c;
   margin-bottom: 1rem;
+  color: #e74c3c;
 }
 
 .user-info {
-  background: #f8f9fa;
   padding: 1rem;
   border-radius: 4px;
   margin: 1.5rem 0;
+  background: #f8f9fa;
   text-align: left;
 }
 
 .user-info code {
-  background: #e9ecef;
   padding: 0.2rem 0.4rem;
   border-radius: 3px;
+  background: #e9ecef;
   font-family: monospace;
 }
 
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   margin-top: 2rem;
+  gap: 0.75rem;
 }
 
 .btn-primary {
   padding: 0.75rem 1.5rem;
-  background: #3498db;
-  color: white;
   border: none;
   border-radius: 4px;
+  background: #3498db;
+  color: white;
   cursor: pointer;
 }
 
 .btn-secondary {
   padding: 0.75rem 1.5rem;
-  background: #95a5a6;
-  color: white;
   border: none;
   border-radius: 4px;
+  background: #95a5a6;
+  color: white;
   cursor: pointer;
 }
 
 .btn-tertiary {
   padding: 0.75rem 1.5rem;
-  background: #f39c12;
-  color: white;
   border: none;
   border-radius: 4px;
+  background: #f39c12;
+  color: white;
   cursor: pointer;
 }
 </style>

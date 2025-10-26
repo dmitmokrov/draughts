@@ -4,7 +4,7 @@
       <h1>Панель управления</h1>
       <div class="user-actions">
         <span class="user-info"> {{ userData?.name }} ({{ userRoleText }}) </span>
-        <button @click="handleLogout" class="logout-btn" :disabled="isLoading">
+        <button class="logout-btn" :disabled="isLoading" @click="handleLogout">
           {{ isLoading ? 'Выход...' : 'Выйти' }}
         </button>
       </div>
@@ -82,18 +82,18 @@ const navigateTo = (path: string) => {
 
 <style scoped>
 .dashboard {
-  padding: 2rem;
   max-width: 1200px;
+  padding: 2rem;
   margin: 0 auto;
 }
 
 .dashboard-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  justify-content: space-between;
   padding-bottom: 1rem;
   border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
 }
 
 .user-actions {
@@ -109,21 +109,21 @@ const navigateTo = (path: string) => {
 
 .logout-btn {
   padding: 0.5rem 1rem;
-  background: #e74c3c;
-  color: white;
   border: none;
   border-radius: 4px;
+  background: #e74c3c;
+  color: white;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.logout-btn:hover:not(:disabled) {
-  background: #c0392b;
 }
 
 .logout-btn:disabled {
   background: #cccccc;
   cursor: not-allowed;
+}
+
+.logout-btn:hover:not(:disabled) {
+  background: #c0392b;
 }
 
 .dashboard-content {
@@ -134,31 +134,31 @@ const navigateTo = (path: string) => {
 
 .action-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
   margin-top: 1rem;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .action-card {
-  background: white;
   padding: 2rem;
-  border-radius: 8px;
   border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background: white;
   cursor: pointer;
+  text-align: center;
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  text-align: center;
 }
 
 .action-card:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .card-icon {
-  font-size: 2.5rem;
   margin-bottom: 1rem;
+  font-size: 2.5rem;
 }
 
 .action-card h3 {
@@ -167,15 +167,15 @@ const navigateTo = (path: string) => {
 }
 
 .action-card p {
-  color: #666;
   margin: 0;
+  color: #666;
 }
 
 .info-section {
-  background: #f8f9fa;
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 2rem;
+  background: #f8f9fa;
 }
 
 .info-section h3 {

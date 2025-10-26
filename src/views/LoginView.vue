@@ -3,15 +3,16 @@
     <div class="login-card">
       <h2>Вход в систему обучения шашкам</h2>
 
-      <form @submit.prevent="handleLogin" class="login-form">
+      <form class="login-form" @submit.prevent="handleLogin">
         <div class="field">
           <label for="email">Email</label>
           <InputText
             id="email"
             v-model="email"
+            :class="{ 'p-invalid': formErrors.email }"
+            fluid
             placeholder="Введите ваш email"
             type="email"
-            :class="{ 'p-invalid': formErrors.email }"
           />
           <small v-if="formErrors.email" class="error-text">{{ formErrors.email }}</small>
         </div>
@@ -21,15 +22,16 @@
           <Password
             id="password"
             v-model="password"
-            placeholder="Введите пароль"
-            :feedback="false"
-            toggleMask
             :class="{ 'p-invalid': formErrors.password }"
+            :feedback="false"
+            fluid
+            placeholder="Введите пароль"
+            toggleMask
           />
           <small v-if="formErrors.password" class="error-text">{{ formErrors.password }}</small>
         </div>
 
-        <Button type="submit" label="Войти" :loading="isLoading" class="login-button" />
+        <Button class="login-button" label="Войти" :loading="isLoading" type="submit" />
 
         <div v-if="error" class="error-message">
           {{ error }}
@@ -96,26 +98,26 @@ const handleLogin = async () => {
 <style scoped>
 .login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .login-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .login-card h2 {
-  text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
+  text-align: center;
 }
 
 .login-form {
@@ -131,8 +133,8 @@ const handleLogin = async () => {
 }
 
 .field label {
-  font-weight: 500;
   color: #555;
+  font-weight: 500;
 }
 
 .error-text {
@@ -146,19 +148,19 @@ const handleLogin = async () => {
 }
 
 .error-message {
-  background: #fee;
-  border: 1px solid #f5c6cb;
-  color: #721c24;
   padding: 0.75rem;
+  border: 1px solid #f5c6cb;
   border-radius: 4px;
+  background: #fee;
+  color: #721c24;
   text-align: center;
 }
 
 .login-info {
-  margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid #eee;
-  text-align: center;
+  margin-top: 1.5rem;
   color: #666;
+  text-align: center;
 }
 </style>

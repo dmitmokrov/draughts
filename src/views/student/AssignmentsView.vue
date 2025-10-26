@@ -19,8 +19,8 @@
 
 <style scoped>
 .assignments-view {
-  padding: 2rem;
   max-width: 1200px;
+  padding: 2rem;
   margin: 0 auto;
 }
 
@@ -29,9 +29,9 @@
 }
 
 .content {
-  background: white;
   padding: 2rem;
   border-radius: 8px;
+  background: white;
   text-align: center;
 }
 </style>

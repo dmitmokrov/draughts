@@ -4,7 +4,7 @@
       <h1>⛔ Доступ запрещен</h1>
       <p>У вас недостаточно прав для просмотра этой страницы.</p>
 
-      <div class="user-info" v-if="authStore.userData">
+      <div v-if="authStore.userData" class="user-info">
         <p>
           Ваша роль: <strong>{{ roleText }}</strong>
         </p>
@@ -14,14 +14,14 @@
         </p>
       </div>
 
-      <div class="user-info" v-else>
+      <div v-else class="user-info">
         <p>Информация о пользователе не доступна</p>
       </div>
 
       <div class="actions">
-        <button @click="goToDashboard" class="btn-primary">На главную</button>
-        <button @click="logout" class="btn-secondary">Выйти</button>
-        <button @click="reloadPage" class="btn-tertiary">Обновить страницу</button>
+        <button class="btn-primary" @click="goToDashboard">На главную</button>
+        <button class="btn-secondary" @click="logout">Выйти</button>
+        <button class="btn-tertiary" @click="reloadPage">Обновить страницу</button>
       </div>
     </div>
   </div>

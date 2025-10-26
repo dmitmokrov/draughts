@@ -3,16 +3,16 @@
     <div class="login-card">
       <h2>Вход в систему обучения шашкам</h2>
 
-      <form @submit.prevent="handleLogin" class="login-form">
+      <form class="login-form" @submit.prevent="handleLogin">
         <div class="field">
           <label for="email">Email</label>
           <InputText
             id="email"
             v-model="email"
+            :class="{ 'p-invalid': formErrors.email }"
+            fluid
             placeholder="Введите ваш email"
             type="email"
-            fluid
-            :class="{ 'p-invalid': formErrors.email }"
           />
           <small v-if="formErrors.email" class="error-text">{{ formErrors.email }}</small>
         </div>
@@ -22,16 +22,16 @@
           <Password
             id="password"
             v-model="password"
-            placeholder="Введите пароль"
-            :feedback="false"
-            toggleMask
-            fluid
             :class="{ 'p-invalid': formErrors.password }"
+            :feedback="false"
+            fluid
+            placeholder="Введите пароль"
+            toggleMask
           />
           <small v-if="formErrors.password" class="error-text">{{ formErrors.password }}</small>
         </div>
 
-        <Button type="submit" label="Войти" :loading="isLoading" class="login-button" />
+        <Button class="login-button" label="Войти" :loading="isLoading" type="submit" />
 
         <div v-if="error" class="error-message">
           {{ error }}

@@ -4,7 +4,7 @@
       <h1>Панель управления</h1>
       <div class="user-actions">
         <span class="user-info"> {{ userData?.name }} ({{ userRoleText }}) </span>
-        <button @click="handleLogout" class="logout-btn" :disabled="isLoading">
+        <button class="logout-btn" :disabled="isLoading" @click="handleLogout">
           {{ isLoading ? 'Выход...' : 'Выйти' }}
         </button>
       </div>
